@@ -171,14 +171,14 @@ export default function App() {
     return Array.from({ length: count }, (_, i) => ({
       address: CONTRACT_ADDRESS,
       abi: INVENTORY_ABI,
-      functionName: 'get_item',
+      functionName: 'get_item' as const,
       args: [BigInt(i + 1)],
     }))
   }, [count])
 
   // Fetch all items simultaneously
   const { data: itemsData, refetch: refetchItems } = useReadContracts({
-    contracts: itemContractCalls,
+    contracts: itemContractCalls as any,
   })
 
   // 3. WRITE: Trigger add_item
